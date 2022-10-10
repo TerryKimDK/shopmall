@@ -10,7 +10,7 @@ public class LoginController {
 //    @Autowired
 //    private User user;
 
-    @GetMapping("/login")
+    @GetMapping("/Login")
     public String login(){
         System.out.println("Login controller");
 
