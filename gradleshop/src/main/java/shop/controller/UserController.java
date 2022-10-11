@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import shop.domain.User;
+import shop.domain.Member;
 import shop.dto.MemberFormDto;
 import shop.service.UserService;
 
@@ -34,13 +34,24 @@ public class UserController {
         }
 
         try {
-            User user = User.createUser(memberFormDto, passwordEncoder);
-            userService.saveUser(user);
+            Member member = Member.createUser(memberFormDto, passwordEncoder);
+            userService.saveMember(member);
         } catch (IllegalStateException e){
             model.addAttribute("errorMessage", e.getMessage());
             return "sign";
         }
 
         return "sign"; //templates 에서 시작하는 html 이름
+    }
+
+    @GetMapping(value = "/sign/login")
+    public String loginMember(){
+        return "signIn";
+    }
+
+    @GetMapping(value = "/sign/login/error")
+    public String loginError(Model model){
+        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+        return "error";
     }
 }
