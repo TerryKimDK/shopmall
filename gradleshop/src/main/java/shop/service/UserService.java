@@ -1,34 +1,49 @@
 package shop.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import shop.domain.Role;
-import shop.domain.User;
+import shop.domain.Member;
 import shop.repository.UserRepository;
 
 import javax.transaction.Transactional;
-import java.time.LocalDate;
 
 @Service
 @Transactional
 @RequiredArgsConstructor // repository di를 위해
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public User saveUser(User user) {
-        validateDuplicateUser(user);
-        return userRepository.save(user);
+    public Member saveMember(Member member) {
+        validateDuplicateUser(member);
+        return userRepository.save(member);
     }
 
-    public void validateDuplicateUser(User user) {
-        System.out.println("valid method :" + user.getEmail());
-        User findUser = userRepository.findByEmail(user.getEmail());
-        if (findUser != null) {
+    public void validateDuplicateUser(Member member) {
+        System.out.println("valid method :" + member.getEmail());
+        Member findMember = userRepository.findByEmail(member.getEmail());
+        if (findMember != null) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
+    }
+    @Override
+    public UserDetails loadUserByUsername(String email) throws
+            UsernameNotFoundException {
+        Member member = userRepository.findByEmail(email);
+        System.out.println("override userservice: " + member);
+        if(member == null) {
+            throw new UsernameNotFoundException(email);
+        }
+
+        return User.builder()
+                .username(member.getEmail())
+                .password(member.getPassword())
+                .roles(member.getRoles().toString())
+                .build();
     }
 
 }
