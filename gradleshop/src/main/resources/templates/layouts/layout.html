@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lagn="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <meta charset="UTF-8" />
+    <title>페이지 이름</title>
+<!-- header fragment 사용 -->
+<header th:replace="fragments/header :: headerFragment"></header>
+<!-- content fragment 사용 -->
+<div layout:fragment="content"></div>
+<!-- footer fragment 사용 -->
+<footer th:replace="fragments/footer :: footerFragment"></footer>
+</html>

@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import shop.domain.Member;
 import shop.repository.UserRepository;
@@ -30,12 +31,20 @@ public class UserService implements UserDetailsService {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws
             UsernameNotFoundException {
         Member member = userRepository.findByEmail(email);
-        System.out.println("override userservice: " + member);
-        if(member == null) {
+        System.out.println("override userservice: " + member.getEmail());
+        System.out.println("override userservice: " + member.getPassword());
+        System.out.println("override userservice: " + member.getRoles());
+        System.out.println("override userservice: " + member.getName());
+        System.out.println("override userservice: " + member.getPhone());
+        System.out.println("override userservice: " + member.getId());
+        System.out.println("override userservice: " + member.getAddress());
+
+        if (member == null) {
             throw new UsernameNotFoundException(email);
         }
 
@@ -44,6 +53,7 @@ public class UserService implements UserDetailsService {
                 .password(member.getPassword())
                 .roles(member.getRoles().toString())
                 .build();
+
     }
 
 }

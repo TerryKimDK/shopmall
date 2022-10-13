@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,17 +15,17 @@
     <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
     <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
     <div class="login-form">
-      <form role="form" method="post" action="/sign/login">
+      <form role="form" method="post" th:action="@{/sign/login}">
       <div class="sign-in-htm">
         <div class="group">
           <label th:for="email" class="label">Email</label>
           <label>
-            <input type="text" class="input">
+            <input type="email" name="email" class="input">
           </label>
         </div>
         <div class="group">
           <label th:for="password" class="label">Password</label>
-          <input type="password" class="input" data-type="password">
+          <input type="password" name="password" class="input" data-type="password">
         </div>
         <div class="group">
           <input id="check" type="checkbox" class="check" checked>
@@ -45,22 +45,27 @@
           <div class="group">
             <label th:for="name" class="label">이름</label>
             <input type="text" th:field="*{name} "class="input" placeholder="이름 입력" >
+            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
           </div>
           <div class="group">
             <label th:for="email" class="label">Email</label>
             <input type="email" th:field="*{email} "class="input"placeholder="email 입력">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
           </div>
           <div class="group">
             <label th:for="password" class="label">Password</label>
             <input type="password" th:field="*{password} "class="input" placeholder="비밀번호 입력" >
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
           </div>
           <div class="group">
             <label th:for="address" class="label">주소</label>
             <input th:field="*{address}" type="text" class="input" placeholder="주소 입력">
+            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
           </div>
           <div class="group">
             <label th:for="phone" class="label">연락처</label>
             <input th:field="*{phone}" type="text" class="input" placeholder="연락처 입력">
+            <p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
           </div>
           <div class="group">
             <input type="submit" class="button" value="Submit">

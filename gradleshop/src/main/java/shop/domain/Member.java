@@ -39,12 +39,10 @@ public class Member {
         member.setPhone(memberFormDto.getPhone());
         member.setRoles(Role.USER);
         member.setRegDate(LocalDate.now());
-
-        System.out.println(member.getPassword());
-        System.out.println(member.getName());
-
-        System.out.println(member.getRegDate());
-        System.out.println(member.getRoles());
+//        System.out.println(member.getPassword());
+//        System.out.println(member.getName());
+//        System.out.println(member.getRegDate());
+//        System.out.println(member.getRoles());
         return member;
     }
 

@@ -12,7 +12,6 @@ import shop.dto.MemberFormDto;
 import shop.service.UserService;
 
 import javax.validation.Valid;
-
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -41,17 +40,19 @@ public class UserController {
             return "sign";
         }
 
-        return "sign"; //templates 에서 시작하는 html 이름
+        return "sign"; //로그인 성공시 가는 url
     }
 
-    @GetMapping(value = "/sign/login")
-    public String loginMember(){
-        return "signIn";
+    @GetMapping(value = "/sign/loginSuccess")
+    public String loginMember(Model model){
+//        model.addAttribute("loginSuccessMsg", "로그인성공");
+        return "redirect:/";
     }
 
-    @GetMapping(value = "/sign/login/error")
-    public String loginError(Model model){
-        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
-        return "error";
-    }
+//    @GetMapping(value = "/sign/login/error")
+//    public String loginError(Model model){
+//        model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
+//        return "error";
+//    }
+
 }

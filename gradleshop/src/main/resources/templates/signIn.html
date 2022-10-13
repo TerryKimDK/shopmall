@@ -12,6 +12,7 @@
 <body>
 <div class="login-wrap">
   <h1>로그인 완료</h1>
+  <p th:if="${loginSuccessMsg}" class="error" th:text="${loginSuccessMsg}"></p>
 </div>
 </body>
 </html>
