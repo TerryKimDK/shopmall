@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import shop.auth.CustomAuthentication;
 import shop.service.UserService;
 
 @Configuration
@@ -26,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
+                .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**","/sass/**","/Source/**")
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -39,9 +41,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/fonts/**","img/**","/sass/**","/js/**","/Source/**","/sign/**","/item/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated();
+        http.exceptionHandling().authenticationEntryPoint(new CustomAuthentication());
         http.formLogin()
                 .loginPage("/sign/login")
-                .defaultSuccessUrl("/sign/loginSuccess")
+                .defaultSuccessUrl("/")
                 .usernameParameter("email")
                 .failureUrl("/sign/login/error")
                 .and()

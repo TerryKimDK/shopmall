@@ -29,7 +29,7 @@ public class UserController {
     public String newMember(@Valid MemberFormDto memberFormDto, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
-            return "sign";
+            return "redirect:/";
         }
 
         try {
@@ -46,7 +46,7 @@ public class UserController {
     @GetMapping(value = "/sign/loginSuccess")
     public String loginMember(Model model){
 //        model.addAttribute("loginSuccessMsg", "로그인성공");
-        return "redirect:/";
+        return "member/userIndex";
     }
 
 //    @GetMapping(value = "/sign/login/error")
