@@ -66,8 +66,8 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a th:href="@{/}">Home</a></li>
-                            <li><a th:href="@{/shopList.html}">Shop</a></li>
-                            <li><a th:href="@{/shopping-cart.html}" sec:authorize="isAuthenticated()">장바구니</a></li>
+                            <li><a th:href="@{/shop}" sec:authorize="isAnonymous() ">Shop</a></li>
+                            <li><a th:href="@{/shopping-cart.html}" sec:authorize="isAuthenticated()">Cart</a></li>
                             <li><a th:href="@{/signIn.html}" sec:authorize="isAuthenticated()">구매내역</a></li>
                             <li><a th:href="@{/shop-details.html}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">상품등록</a></li>
                             <li><a th:href="@{/blog-details.html}" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">상품관리</a></li>

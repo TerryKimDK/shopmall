@@ -1,7 +1,8 @@
-package shop.domain;
+package shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import shop.constant.OrderStatus;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -22,16 +23,14 @@ public class Order {
     @JoinColumn(name = "user_id")
     private Member member;
 
-    private LocalDateTime orderDate;
+    private LocalDateTime orderDate; //주문일
 
     @Enumerated(EnumType.STRING)
-    private OrderStatus orderStatus;
+    private OrderStatus orderStatus; //주문상태
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private int orderPrice;
-    private int count;
     private LocalDateTime regTime;
     private LocalDateTime updateTime;
 

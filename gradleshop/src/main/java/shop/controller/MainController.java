@@ -13,11 +13,4 @@ public class MainController {
         return "index"; //templates 에서 시작하는 html 이름
     }
 
-
-    @GetMapping(value = "/layout")
-    public String thymeleafEx8(){
-        return "main";
-
-    }
-
 }

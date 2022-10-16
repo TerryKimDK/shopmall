@@ -39,12 +39,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                        .antMatchers("/").hasRole("USER").antMatchers("admin").hasRole("ADMIN")
         		.mvcMatchers("/","/css/**","/scripts/**","/plugin/**",
                         "/fonts/**","img/**","/sass/**","/js/**","/Source/**","/sign/**","/item/**").permitAll()
-                .mvcMatchers("/admin/**").hasRole("ADMIN")
-                        .anyRequest().authenticated();
+                .mvcMatchers("/admin/**").hasRole("ADMIN");
+//                .anyRequest().authenticated();
         http.exceptionHandling().authenticationEntryPoint(new CustomAuthentication());
+
         http.formLogin()
                 .loginPage("/sign/login")
-                .defaultSuccessUrl("/")
+                .defaultSuccessUrl("/loginAction")
                 .usernameParameter("email")
                 .failureUrl("/sign/login/error")
                 .and()
