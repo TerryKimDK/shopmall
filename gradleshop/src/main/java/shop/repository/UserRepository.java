@@ -1,7 +1,7 @@
 package shop.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import shop.domain.Member;
+import shop.entity.Member;
 
 public interface UserRepository extends JpaRepository<Member, Long> {
     public Member findByEmail(String email);

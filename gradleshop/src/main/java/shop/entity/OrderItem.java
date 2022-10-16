@@ -1,4 +1,4 @@
-package shop.domain;
+package shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,18 +9,19 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name="order_item")
+@Table(name = "order_item")
 public class OrderItem {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "order_item_id")
     private Long id;
 
-    @ManyToOne()
-    @JoinColumn(name="item_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id")
     private Item item;
 
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
 

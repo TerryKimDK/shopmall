@@ -14,14 +14,14 @@ public class MemberFormDto {
 
     @NotBlank(message = "이름은 필수로 입력")
     private String name;
-    @NotBlank(message = "이름은 필수로 입력")
+    @NotBlank(message = "email 필수로 입력")
     @Email(message = "이메일 형식으로 입력해주세요")
     private String email;
-    @NotBlank(message = "이름은 필수로 입력")
+    @NotBlank(message = "password 필수로 입력")
     @Length(min = 4, max = 16)
     private String password;
-    @NotBlank(message = "이름은 필수로 입력")
+    @NotBlank(message = "주소 필수로 입력")
     private String address;
-    @NotBlank(message = "이름은 필수로 입력")
+    @NotBlank(message = "연락처 필수로 입력")
     private String phone;
 }

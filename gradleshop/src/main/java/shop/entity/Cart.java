@@ -1,12 +1,10 @@
-package shop.domain;
+package shop.entity;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table(name="cart")
@@ -14,6 +12,7 @@ import java.time.LocalDate;
 @Setter
 @ToString
 public class Cart {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cart_id")
@@ -22,4 +21,10 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "user_id")
     private Member member;
+
+    public static Cart createCart(Member member) {
+        Cart cart = new Cart();
+        cart.setMember(member);
+        return cart;
+    }
 }

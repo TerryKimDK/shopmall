@@ -1,9 +1,10 @@
-package shop.domain;
+package shop.entity;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import shop.constant.Role;
 import shop.dto.MemberFormDto;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @Getter @Setter
 @ToString
 @Table(name="member")
-public class Member {
+public class Member extends BaseEntity{
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,7 +28,6 @@ public class Member {
     private String phone;
     @Enumerated(EnumType.STRING)
     private Role roles;
-    private LocalDate regDate;
 
     public static Member createUser(MemberFormDto memberFormDto,
                                     PasswordEncoder passwordEncoder) {
@@ -38,14 +38,6 @@ public class Member {
         member.setAddress(memberFormDto.getAddress());
         member.setPhone(memberFormDto.getPhone());
         member.setRoles(Role.USER);
-        member.setRegDate(LocalDate.now());
-//        System.out.println(member.getPassword());
-//        System.out.println(member.getName());
-//        System.out.println(member.getRegDate());
-//        System.out.println(member.getRoles());
         return member;
     }
-
-
-
 }

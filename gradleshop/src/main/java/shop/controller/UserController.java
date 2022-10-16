@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import shop.domain.Member;
+import shop.entity.Member;
 import shop.dto.MemberFormDto;
 import shop.service.UserService;
 
@@ -43,7 +43,7 @@ public class UserController {
         return "sign"; //로그인 성공시 가는 url
     }
 
-    @GetMapping(value = "/sign/loginSuccess")
+    @GetMapping(value = "/loginAction")
     public String loginMember(Model model){
 //        model.addAttribute("loginSuccessMsg", "로그인성공");
         return "member/userIndex";
