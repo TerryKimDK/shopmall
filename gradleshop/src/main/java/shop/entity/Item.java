@@ -40,10 +40,6 @@ public class Item extends BaseEntity{
     private int originPrice;
     @Enumerated(EnumType.STRING)
     private ItemSellStatus itemSellStatus;
-    private LocalDateTime regTime;
-    private LocalDateTime updateTime;
-
-
     public void updateItem(ItemFormDto itemFormDto) {
         this.itemName = itemFormDto.getItemName();
         this.price = itemFormDto.getPrice();

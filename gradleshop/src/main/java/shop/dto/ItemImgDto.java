@@ -11,13 +11,9 @@ import shop.entity.ItemImg;
     public class ItemImgDto {
 
         private Long id;
-
-        private String itemNm;
-
-        private Integer price;
-
-        private String itemDetail;
-
+        private String imgName;
+        private String oriImgName;
+        private String imgUrl;
         private String repImgYn;
         private static ModelMapper modelMapper = new ModelMapper();
 

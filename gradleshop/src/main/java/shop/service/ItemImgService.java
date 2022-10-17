@@ -49,7 +49,8 @@ public class ItemImgService {
 
         // 상품 이미지를 수정했다면
         if (!itemImgFile.isEmpty()) {
-            ItemImg savedItemImg = itemImgRepository.findById(itemImgId).orElseThrow(EntityNotFoundException::new);
+            ItemImg savedItemImg = itemImgRepository.findById(itemImgId)
+                    .orElseThrow(EntityNotFoundException::new);
 
             // 기존 이미지 파일이 존재한다면 삭제
             if (!StringUtils.isEmpty(savedItemImg.getImgName())) {
@@ -57,7 +58,8 @@ public class ItemImgService {
             }
 
             String oriImgName = itemImgFile.getOriginalFilename();
-            String imgName = fileService.uploadFile(itemImgLocation, oriImgName, itemImgFile.getBytes());
+            String imgName = fileService.uploadFile(itemImgLocation,
+                    oriImgName, itemImgFile.getBytes());
             String imgUrl = "/images/item/" + imgName;
             savedItemImg.updateItemImg(oriImgName, imgName, imgUrl);
 

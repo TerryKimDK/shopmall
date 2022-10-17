@@ -37,7 +37,7 @@ public class Member extends BaseEntity{
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         member.setPhone(memberFormDto.getPhone());
-        member.setRoles(Role.USER);
+        member.setRoles(Role.ADMIN);
         return member;
     }
 }

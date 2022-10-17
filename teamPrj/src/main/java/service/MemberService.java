@@ -1,23 +1,25 @@
 package service;
 
 import lombok.RequiredArgsConstructor;
+import mapper.MemberMapper;
 import model.MemberDTO;
-import dao.MemberDAO;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class MemberService {
+    private final MemberMapper memberMapper;
 
-    private final MemberDAO memberDAO;
+    public int login(MemberDTO input) {
+        return memberMapper.login(input);
+    }
 
-    public void idCheck(MemberDTO input) {
-        int count = memberDAO.selectCount(input);
+    public int idCheck(MemberDTO input) {
+        return memberMapper.idCheck(input);
+    }
 
-        if (count == 1)
-            System.out.println("로그인 성공");
-        else
-            System.out.println("로그인 실패");
+    public int join(MemberDTO input) {
+        return memberMapper.join(input);
     }
 
 }
