@@ -1,4 +1,4 @@
-package mapper;
+package service;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -24,7 +24,7 @@ public class SessionFactory {
             }
         }
 
-        return factory.openSession();
+        return factory.openSession(true);
     }
 
 }

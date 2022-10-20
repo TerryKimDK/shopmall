@@ -1,18 +1,29 @@
 package shop.controller;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import shop.dto.ItemSearchDto;
+import shop.dto.MainItemDto;
+import shop.service.ItemService;
+
+import java.util.Optional;
 
 @Controller
+@RequiredArgsConstructor
 public class MainController {
 
-    @GetMapping(value={"","/"})
-    public String main(){
-        System.out.println("maincontroller");
-
-        return "index"; //templates 에서 시작하는 html 이름
-    }
-/*
+//    @GetMapping(value={"","/"})
+//    public String main(){
+//        System.out.println("maincontroller");
+//
+//        return "index"; //templates 에서 시작하는 html 이름
+//    }
+    final private ItemService itemService;
     @GetMapping(value = "/")
     public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model) {
 
@@ -25,5 +36,4 @@ public class MainController {
         return "main";
 
     }
-*/
 }

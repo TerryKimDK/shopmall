@@ -15,9 +15,10 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    private static MemberController instance;
+
     public void loginView() {
         new LoginView();
-//        LoginView loginView = new LoginView();
     }
 
     public int login(MemberDTO input) {
@@ -39,8 +40,6 @@ public class MemberController {
     public void mainView() {
         new MainView();
     }
-
-    private static MemberController instance;
 
     public static MemberController getInstance() {
         if (instance == null)

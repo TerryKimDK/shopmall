@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MainItemDto {
-
+// main 화면에 뜨게할 DTO 객체
     private Long id;
     private String itemName;
     private String itemDetail;

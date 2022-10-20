@@ -24,7 +24,8 @@ public class FileService {
         FileOutputStream fos = new FileOutputStream(fileUploadFullUrl);
         fos.write(fileData);
         fos.close();
-
+        System.out.println("saverFilename :" + savedFileName);
+        System.out.println("fileuploadfullurl :" + fileUploadFullUrl);
         return savedFileName;
     }
 

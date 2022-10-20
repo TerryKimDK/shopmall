@@ -3,6 +3,7 @@ package shop.dto;
 import lombok.Getter;
 import lombok.Setter;
 import org.modelmapper.ModelMapper;
+import org.springframework.transaction.annotation.Transactional;
 import shop.entity.Item;
 import shop.constant.ItemSellStatus;
 

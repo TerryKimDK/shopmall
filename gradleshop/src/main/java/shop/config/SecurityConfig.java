@@ -27,7 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
-                .antMatchers("/css/**", "/js/**", "/img/**", "/fonts/**","/sass/**","/Source/**")
+                .antMatchers("/css/**", "/js/**","/images/**", "/img/**", "/fonts/**","/sass/**","/Source/**")
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
@@ -35,9 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-//                        .antMatchers("/login", "/sign/login", "/user", "/sing").permitAll()
-//                        .antMatchers("/").hasRole("USER").antMatchers("admin").hasRole("ADMIN")
-        		.mvcMatchers("/","/css/**","/scripts/**","/plugin/**",
+        		.mvcMatchers("/","/css/**","/scripts/**","/plugin/**", "images/**",
                         "/fonts/**","img/**","/sass/**","/js/**","/Source/**","/sign/**","/item/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN");
 //                .anyRequest().authenticated();

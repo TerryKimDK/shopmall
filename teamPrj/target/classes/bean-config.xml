@@ -17,9 +17,9 @@
     <bean id="memberService" class="service.MemberService"/>
 
     <!-- mapper -->
-    <bean id="memberMapper" class="mapper.MemberMapper"/>
+    <!--<bean id="memberMapper" class="mapper.MemberMapper"/>-->
 
-    <bean id="sessionFactory" class="mapper.SessionFactory"/>
+    <bean id="sessionFactory" class="service.SessionFactory"/>
 
     <!-- dao -->
 <!--    <bean id="memberDAO" class="dao.MemberDAO"/>-->
@@ -27,7 +27,7 @@
     <!-- dbcp -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/veganroad?serverTimezone=UTC"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/veganroad"/>
         <property name="username" value="root"/>
         <property name="password" value="1234"/>
     </bean>
