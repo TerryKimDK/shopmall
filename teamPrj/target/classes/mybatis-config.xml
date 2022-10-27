@@ -3,6 +3,8 @@
 <configuration>
     <typeAliases>
         <typeAlias type="model.MemberDTO" alias="member"/>
+        <typeAlias type="model.ReviewDTO" alias="review"/>
+        <typeAlias type="model.StoreDTO" alias="store"/>
     </typeAliases>
 
     <environments default="development">
@@ -10,7 +12,7 @@
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/veganroad"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/veganroad?characterEncoding=utf8"/>
                 <property name="username" value="root"/>
                 <property name="password" value="1234"/>
             </dataSource>
@@ -19,5 +21,8 @@
 
     <mappers>
         <mapper resource="mapper/MemberMapper.xml"/>
+        <mapper resource="mapper/ReviewMapper.xml"/>
+        <mapper resource="mapper/StoreMapper.xml"/>
+        <mapper resource="mapper/SearchMapper.xml"/>
     </mappers>
 </configuration>

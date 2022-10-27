@@ -10,24 +10,23 @@
 
     <!-- controller -->
     <bean id="memberController" class="controller.MemberController"/>
-
     <bean id="reviewController" class="controller.ReviewController"/>
-
+    <bean id="storeController" class="controller.StoreController"/>
+    <bean id="searchController" class="controller.SearchController"/>
     <!-- service -->
     <bean id="memberService" class="service.MemberService"/>
 
-    <!-- mapper -->
-    <!--<bean id="memberMapper" class="mapper.MemberMapper"/>-->
+    <bean id="reviewService" class="service.ReviewService"/>
+
+    <bean id="storeService" class="service.StoreService"/>
+    <bean id="searchService" class="service.SearchService"/>
 
     <bean id="sessionFactory" class="service.SessionFactory"/>
-
-    <!-- dao -->
-<!--    <bean id="memberDAO" class="dao.MemberDAO"/>-->
 
     <!-- dbcp -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/veganroad"/>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/veganroad?characterEncoding=utf8"/>
         <property name="username" value="root"/>
         <property name="password" value="1234"/>
     </bean>

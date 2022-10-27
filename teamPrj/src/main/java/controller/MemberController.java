@@ -5,9 +5,11 @@ import model.MemberDTO;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import service.MemberService;
-import view.JoinView;
-import view.LoginView;
-import view.MainView;
+import view.member.Join;
+import view.member.Login;
+import view.Main;
+import view.member.Update;
+import view.member.VeganTest;
 
 @Controller
 @RequiredArgsConstructor
@@ -15,10 +17,12 @@ public class MemberController {
 
     private final MemberService memberService;
 
-    private static MemberController instance;
+    public void mainView() {
+        new Main();
+    }
 
     public void loginView() {
-        new LoginView();
+        new Login();
     }
 
     public int login(MemberDTO input) {
@@ -26,20 +30,34 @@ public class MemberController {
     }
 
     public void joinView() {
-        new JoinView();
+        new Join();
+    }
+
+    public void veganTest(MemberDTO input) {
+        new VeganTest(input);
     }
 
     public int join(MemberDTO input) {
         return memberService.join(input);
     }
 
-    public int idCheck(MemberDTO input) {
-        return memberService.idCheck(input);
+    public int idCheck(String id) {
+        return memberService.idCheck(id);
     }
 
-    public void mainView() {
-        new MainView();
+    public void updateView() {
+        new Update();
     }
+
+    public MemberDTO getMember(String id) {
+        return memberService.getMember(id);
+    }
+
+    public int update(MemberDTO input) {
+        return memberService.update(input);
+    }
+
+    private static MemberController instance;
 
     public static MemberController getInstance() {
         if (instance == null)

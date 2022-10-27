@@ -9,7 +9,7 @@
           and password = #{password}
     </select>
 
-    <select id="idCheck" parameterType="member" resultType="int">
+    <select id="idCheck" parameterType="String" resultType="int">
         select count(id)
         from member
         where id = #{id}
@@ -19,4 +19,16 @@
         insert into member(id, password, name, email, contact, address, vegan)
         values (#{id}, #{password}, #{name}, #{email}, #{contact}, #{address}, #{vegan})
     </insert>
+
+    <select id="getMember" parameterType="String" resultType="member">
+        select *
+        from member
+        where id = #{id}
+    </select>
+
+    <select id="update" parameterType="member" resultType="int">
+        update member
+        set password = #{password}, name = #{name}, email = #{email}, contact = #{contact}, address = #{address}, vegan = #{vegan}
+        where id = #{id}
+    </select>
 </mapper>

@@ -8,7 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="teamPrj" />
+        <module name="teamPrjMap" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="teamPrj" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

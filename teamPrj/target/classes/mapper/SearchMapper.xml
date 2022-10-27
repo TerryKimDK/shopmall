@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SearchMapper">
+<!-- id는 서비스의 메소드이름 인자값 parameterType-->
+    <select id="list" parameterType="store" resultType="store">
+        select * from store where vegan = #{vegan};
+    </select>
+
+    <insert id="create" parameterType="store">
+        insert into store(vegan, name, detail, address, contact, open, close, lat, lon, capacity) values (#{vegan}, #{name}, #{detail}, #{address}, #{contact}, #{open}, #{close}, #{lat}, #{lon}, #{capacity})
+    </insert>
+</mapper>
