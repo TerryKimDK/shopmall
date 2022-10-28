@@ -17,12 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class MainController {
 
-//    @GetMapping(value={"","/"})
-//    public String main(){
-//        System.out.println("maincontroller");
-//
-//        return "index"; //templates 에서 시작하는 html 이름
-//    }
+
     final private ItemService itemService;
     @GetMapping(value = "/")
     public String main(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model) {

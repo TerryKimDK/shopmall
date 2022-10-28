@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name="orders")
-public class Order {
+public class Order extends BaseEntity{
 
     @Id @GeneratedValue
     @Column(name = "order_id")
@@ -31,7 +31,38 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> orderItems = new ArrayList<>();
 
-    private LocalDateTime regTime;
-    private LocalDateTime updateTime;
+    public void addOrderItem(OrderItem orderItem) {
+        orderItems.add(orderItem);
+        orderItem.setOrder(this);
+    }
+
+    public static Order createOrder(Member member, List<OrderItem> orderItemList) {
+
+        Order order = new Order();
+        order.setMember(member);
+        for (OrderItem orderItem : orderItemList) {
+            order.addOrderItem(orderItem);
+        }
+        order.setOrderDate(LocalDateTime.now());
+        order.setOrderStatus(OrderStatus.ORDER);
+        return order;
+    }
+
+    public int getTotalPrice() {
+        int totalPrice = 0;
+
+        for (OrderItem orderItem : orderItems) {
+            totalPrice += orderItem.getTotalPrice();
+        }
+        return totalPrice;
+    }
+
+    public void orderCancel() {
+
+        this.orderStatus = OrderStatus.CANCEL;
+        for (OrderItem orderItem : orderItems) {
+            orderItem.cancel();
+        }
+    }
 
 }

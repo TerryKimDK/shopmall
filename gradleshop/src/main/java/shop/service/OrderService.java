@@ -11,10 +11,7 @@ import org.thymeleaf.util.StringUtils;
 import shop.dto.OrderDto;
 import shop.dto.OrderHistDto;
 import shop.dto.OrderItemDto;
-import shop.entity.Item;
-import shop.entity.ItemImg;
-import shop.entity.Order;
-import shop.entity.OrderItem;
+import shop.entity.*;
 import shop.repository.ItemImgRepository;
 import shop.repository.ItemRepository;
 import shop.repository.MemberRepository;
@@ -64,7 +61,7 @@ public class OrderService {
             OrderHistDto orderHistDto = new OrderHistDto(order);
             List<OrderItem> orderItems = order.getOrderItems();
             for (OrderItem orderItem : orderItems) {
-                ItemImg itemImg = itemImgRepository.findByItemIdAndRepimgYn(orderItem.getItem().getId(), "Y");
+                ItemImg itemImg = itemImgRepository.findByItemIdAndRepImgYn(orderItem.getItem().getId(), "Y");
                 OrderItemDto orderItemDto = new OrderItemDto(orderItem, itemImg.getImgUrl());
                 orderHistDto.addOrderItemDto(orderItemDto);
             }
